@@ -49,8 +49,8 @@
                         </div>
                         
                         <div class="text-input">
-                            <h6 for="phone-number">Phone Number (without +91)</h6>
-                            <input type="tel" id="phone-number" name="phone-number" required pattern="[0-9]{10}" >
+                            <h6 for="phone-number">Phone Number (with +91)</h6>
+                            <input type="text" id="phone-number" name="phone-number" required>
                         </div>
             
                         <div class="text-input">
@@ -117,6 +117,7 @@
             {
                 let value = encodeURIComponent(msg);
                 let url = `https://wa.me/${number}?text=${value}`;
+                //let url = `whatsapp://send?phone=${number}?text=${value}`;
 
                 wpLink.style.visibility = "visible";
                 wpLink.href = `${url}`;
@@ -138,7 +139,8 @@
             }
             
             let name = document.getElementById('patient-name').value;
-            let no = document.getElementById('phone-number').value;
+            let no = document.getElementById('phone-number').value.replaceAll(" ", "");
+            console.log(no);
             let date_time = document.getElementById('appointment-time').value;
 
             let text = `Hi ${name} (${no}),\nGreetings from ENT. Newtown clinic.\n\nBased on our discussion, we are happy to schedule your appointment on the following slot.\n\nDate: ${date_time.split("T")[0]}\nTime (24-Hour format): ${date_time.split("T")[1]}\n\nThank you.\nwww.entnewtown.com\n\nYou can find our chamber address by searching 'Dr. Subanta Bhaumik' on Google Maps.`
