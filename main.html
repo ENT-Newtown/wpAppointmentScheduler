@@ -143,7 +143,12 @@
             console.log(no);
             let date_time = document.getElementById('appointment-time').value;
 
-            let text = `Hi ${name} (${no}),\nGreetings from ENT. Newtown clinic.\n\nBased on our discussion, we are happy to schedule your appointment on the following slot.\n\nDate: ${date_time.split("T")[0]}\nTime (24-Hour format): ${date_time.split("T")[1]}\n\nThank you.\nwww.entnewtown.com\n\nYou can find our chamber address by searching 'Dr. Subanta Bhaumik' on Google Maps.`
+            let timeString12hr = new Date(date_time)
+            .toLocaleTimeString('en-US', {timeZone:'IST',hour12:true,hour:'numeric',minute:'numeric'});
+
+            console.log (timeString12hr);
+
+            let text = `Hi ${name} (${no}),\nGreetings from ENT. Newtown clinic.\n\nBased on our discussion, we are happy to schedule your appointment on the following slot.\n\nDate: ${date_time.split("T")[0]}\nTime: ${timeString12hr}\n\nThank you.\nwww.entnewtown.com\n\nOur address:\nENT. NEWTOWN,\nAH-5/1, Rajarhat Main Rd, Lichubagan,\nJyangra Pallyshree,\nKolkata 700059\n\n+919046375764\nhttps://g.co/kgs/98eSBqV`
 
             document.getElementById('text-p').innerText = text;
 
